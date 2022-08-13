@@ -13,6 +13,7 @@ public interface AgendaService {
     @Transactional
     Optional<Agenda> salvar(Agenda agenda);
 
+    @Transactional
     Optional<Agenda> atualizar(Agenda agenda);
 
     Optional<Agenda> pesquisarPorID(Long id);

@@ -1,16 +1,14 @@
 package br.com.avocat.agenda.service;
 
-import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.persistence.AgendaRepository;
-import br.com.avocat.agenda.web.dto.AgendaRecord;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -21,15 +19,26 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public Optional<Agenda> salvar(Agenda agenda) {
-            return Optional.of(agendaRepository.save(agenda));
+        return Optional.of(agendaRepository.save(agenda));
     }
 
     @Override
     public Optional<Agenda> atualizar(Agenda agenda) {
 
-        var result = agendaRepository.findAllById(agenda.getId());
+        var result = agendaRepository.findById(agenda.getId());
 
-        return Optional.empty();
+        if (result.isPresent()) {
+            result.get().setTitulo(agenda.getTitulo());
+            result.get().setDescricao(agenda.getDescricao());
+            result.get().setDataFinal(agenda.getDataFinal());
+            result.get().setDataLembrete(agenda.getDataLembrete());
+            result.get().setDataAtualizacao(LocalDateTime.now());
+
+            return Optional.of(agendaRepository.save(result.get()));
+
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Override
