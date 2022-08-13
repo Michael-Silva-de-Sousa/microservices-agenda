@@ -14,7 +14,7 @@ public class Agenda {
 
     @Id
     private String id;
-
+    private  String usuario;
     private Long processoID;
     private Long contratoID;
     private String titulo;

@@ -3,6 +3,7 @@ package br.com.avocat.agenda.web;
 import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.service.AgendaService;
+import br.com.avocat.agenda.service.AgendaServiceImpl;
 import br.com.avocat.agenda.web.dto.AgendaRecord;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,10 +19,10 @@ import java.time.LocalDate;
 @RestController
 public class AgendaControllerImpl implements AgendaController {
 
-    private AgendaService agendaService;
+    private AgendaServiceImpl agendaService;
 
     @Override
-    public ResponseEntity<Agenda> salvar(Agenda agenda) {
+    public ResponseEntity<Agenda> cadastrar(Agenda agenda) {
 
         try {
             var result = agendaService.salvar(agenda);
@@ -30,13 +31,23 @@ public class AgendaControllerImpl implements AgendaController {
                     .orElseGet(() -> ResponseEntity.badRequest().build());
 
         } catch (AgendaException e) {
-            throw new AgendaException("Erro ao salvar agendamento:", e);
+            throw new AgendaException("Erro ao salvar o agendamento:", e);
         }
     }
 
     @Override
-    public ResponseEntity<AgendaRecord> atualizar(AgendaRecord agendaRequest) {
-        return null;
+    public ResponseEntity<Agenda> atualizar(Agenda agenda) {
+
+        try {
+            var result = agendaService.atualizar(agenda);
+            return result
+                    .map(value -> ResponseEntity.ok().body(value))
+                    .orElseGet(() -> ResponseEntity.badRequest().build());
+
+        } catch (AgendaException e) {
+            throw new AgendaException("Erro ao atualizar o agendamento:", e);
+        }
+
     }
 
     @Override
