@@ -1,7 +1,6 @@
 package br.com.avocat.agenda.web;
 
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.web.dto.AgendaRecord;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +33,8 @@ public interface AgendaController {
     ResponseEntity<Agenda> pesquisarPorID(@PathVariable("agendaID") String id);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(@RequestBody AgendaRecord agendaRequest);
+    ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(@PathVariable("processoID") Long processoID);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(@RequestBody AgendaRecord agendaRequest);
+    ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(@PathVariable("contratoID") Long contratoID);
 }

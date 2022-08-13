@@ -3,13 +3,11 @@ package br.com.avocat.agenda.web;
 import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.service.AgendaServiceImpl;
-import br.com.avocat.agenda.web.dto.AgendaRecord;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -72,12 +70,12 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(AgendaRecord agendaRequest) {
+    public ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(Long processoID) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(AgendaRecord agendaRequest) {
+    public ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(Long contratoID) {
         return null;
     }
 
