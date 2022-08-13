@@ -1,32 +1,31 @@
 package br.com.avocat.agenda.web;
 
-import br.com.avocat.agenda.web.dto.AgendaDTO;
+import br.com.avocat.agenda.web.dto.AgendaRecord;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 public interface AgendaController {
 
     @PostMapping
-    ResponseEntity<AgendaDTO> salvar(@RequestBody AgendaDTO agendaRequest);
+    ResponseEntity<AgendaRecord> salvar(@RequestBody AgendaRecord agendaRequest);
 
     @PutMapping
-    ResponseEntity<AgendaDTO> atualizar(@RequestBody AgendaDTO agendaRequest);
+    ResponseEntity<AgendaRecord> atualizar(@RequestBody AgendaRecord agendaRequest);
 
     @GetMapping
-    ResponseEntity<List<AgendaDTO>> pesquisarPorPeriodo(
+    ResponseEntity<Page<AgendaRecord>> pesquisarPorPeriodo(
             @RequestParam("dt-ini") String dataInicio,
             @RequestParam("dt-fin") String dataFinal);
 
     @GetMapping
-    ResponseEntity<AgendaDTO> pesquisarPorID(Long id);
+    ResponseEntity<AgendaRecord> pesquisarPorID(Long id);
 
     @GetMapping
-    ResponseEntity<List<AgendaDTO>> pesquisarTodosPorProcessoID(@RequestBody AgendaDTO agendaRequest);
+    ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorProcessoID(@RequestBody AgendaRecord agendaRequest);
 
     @GetMapping
-    ResponseEntity<List<AgendaDTO>> pesquisarTodosPorContratoID(@RequestBody AgendaDTO agendaRequest);
+    ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorContratoID(@RequestBody AgendaRecord agendaRequest);
 
     @PutMapping
     ResponseEntity<Void> inativar(@PathVariable("/{id}") Long id);

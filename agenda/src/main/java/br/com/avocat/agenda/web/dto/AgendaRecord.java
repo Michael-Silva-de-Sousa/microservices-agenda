@@ -2,7 +2,7 @@ package br.com.avocat.agenda.web.dto;
 
 import java.time.LocalDateTime;
 
-public record AgendaDTO(
+public record AgendaRecord(
         Long processoID,
         Long contratoID,
         String descricao,

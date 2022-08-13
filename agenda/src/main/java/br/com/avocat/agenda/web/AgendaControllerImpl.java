@@ -1,42 +1,41 @@
 package br.com.avocat.agenda.web;
 
-import br.com.avocat.agenda.web.dto.AgendaDTO;
+import br.com.avocat.agenda.web.dto.AgendaRecord;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequestMapping("/v1/api/agenda")
 @RestController
 public class AgendaControllerImpl implements AgendaController {
 
     @Override
-    public ResponseEntity<AgendaDTO> salvar(AgendaDTO agendaRequest) {
+    public ResponseEntity<AgendaRecord> salvar(AgendaRecord agendaRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<AgendaDTO> atualizar(AgendaDTO agendaRequest) {
+    public ResponseEntity<AgendaRecord> atualizar(AgendaRecord agendaRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<AgendaDTO>> pesquisarPorPeriodo(String dataInicio, String dataFinal) {
+    public ResponseEntity<Page<AgendaRecord>> pesquisarPorPeriodo(String dataInicio, String dataFinal) {
         return null;
     }
 
     @Override
-    public ResponseEntity<AgendaDTO> pesquisarPorID(Long id) {
+    public ResponseEntity<AgendaRecord> pesquisarPorID(Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<AgendaDTO>> pesquisarTodosPorProcessoID(AgendaDTO agendaRequest) {
+    public ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorProcessoID(AgendaRecord agendaRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<AgendaDTO>> pesquisarTodosPorContratoID(AgendaDTO agendaRequest) {
+    public ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorContratoID(AgendaRecord agendaRequest) {
         return null;
     }
 
