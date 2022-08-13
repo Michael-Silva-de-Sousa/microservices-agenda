@@ -1,5 +1,6 @@
 package br.com.avocat.agenda.web;
 
+import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.service.AgendaService;
 import br.com.avocat.agenda.web.dto.AgendaRecord;
@@ -20,8 +21,17 @@ public class AgendaControllerImpl implements AgendaController {
     private AgendaService agendaService;
 
     @Override
-    public ResponseEntity<AgendaRecord> salvar(AgendaRecord agendaRequest) {
-        return null;
+    public ResponseEntity<Agenda> salvar(Agenda agenda) {
+
+        try {
+            var result = agendaService.salvar(agenda);
+            return result
+                    .map(value -> ResponseEntity.ok().body(value))
+                    .orElseGet(() -> ResponseEntity.badRequest().build());
+
+        } catch (AgendaException e) {
+            throw new AgendaException("Erro ao salvar agendamento:", e);
+        }
     }
 
     @Override
@@ -30,14 +40,14 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public Page<Agenda> pesquisarPorPeriodo(
+    public ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
             LocalDate dataInicial,
             LocalDate dataFinal,
             Integer page,
             Integer size) {
         Pageable pageable = PageRequest.of(page != null ? page : 0, size != null ? size : 10);
 
-        return agendaService.pesquisarPorPeriodo(dataInicial, dataFinal, pageable);
+        return ResponseEntity.ok(agendaService.pesquisarPorPeriodo(dataInicial, dataFinal, pageable));
     }
 
     @Override

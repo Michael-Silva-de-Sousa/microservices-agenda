@@ -1,20 +1,21 @@
 package br.com.avocat.agenda.service;
 
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.web.dto.AgendaRecord;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 public interface AgendaService {
 
-    Optional<AgendaRecord> salvar(Agenda agenda);
+    @Transactional
+    Optional<Agenda> salvar(Agenda agenda);
 
-    Optional<AgendaRecord> atualizar(Agenda agenda);
+    Optional<Agenda> atualizar(Agenda agenda);
 
-    Optional<AgendaRecord> pesquisarPorID(Long id);
+    Optional<Agenda> pesquisarPorID(Long id);
 
     Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable);
 
