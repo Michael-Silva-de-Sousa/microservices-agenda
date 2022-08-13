@@ -2,7 +2,6 @@ package br.com.avocat.agenda.web;
 
 import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.service.AgendaService;
 import br.com.avocat.agenda.service.AgendaServiceImpl;
 import br.com.avocat.agenda.web.dto.AgendaRecord;
 import lombok.AllArgsConstructor;
@@ -10,7 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 
@@ -47,7 +48,6 @@ public class AgendaControllerImpl implements AgendaController {
         } catch (AgendaException e) {
             throw new AgendaException("Erro ao atualizar o agendamento:", e);
         }
-
     }
 
     @Override
@@ -62,17 +62,22 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<AgendaRecord> pesquisarPorID(Long id) {
+    public ResponseEntity<Agenda> pesquisarPorID(String agendaID) {
+        try {
+            return agendaService.pesquisarPorID(agendaID)
+                    .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        } catch (AgendaException e) {
+            throw new AgendaException("Erro ao pesquisar o agendamento de ID: " + agendaID, e);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(AgendaRecord agendaRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorProcessoID(AgendaRecord agendaRequest) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorContratoID(AgendaRecord agendaRequest) {
+    public ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(AgendaRecord agendaRequest) {
         return null;
     }
 

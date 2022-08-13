@@ -31,11 +31,11 @@ public interface AgendaController {
             @RequestParam(required = false) Integer size);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<AgendaRecord> pesquisarPorID(Long id);
+    ResponseEntity<Agenda> pesquisarPorID(@PathVariable("agendaID") String id);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorProcessoID(@RequestBody AgendaRecord agendaRequest);
+    ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(@RequestBody AgendaRecord agendaRequest);
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Page<AgendaRecord>> pesquisarTodosPorContratoID(@RequestBody AgendaRecord agendaRequest);
+    ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(@RequestBody AgendaRecord agendaRequest);
 }
