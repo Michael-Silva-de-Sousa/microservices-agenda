@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/agenda")
+@RequestMapping("/v1/api/agenda")
 @RestController
 public class AgendaControllerImpl implements AgendaController {
 
