@@ -1,9 +1,12 @@
 package br.com.avocat.agenda.web;
 
+import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.web.dto.AgendaRecord;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 public interface AgendaController {
 
@@ -14,9 +17,11 @@ public interface AgendaController {
     ResponseEntity<AgendaRecord> atualizar(@RequestBody AgendaRecord agendaRequest);
 
     @GetMapping
-    ResponseEntity<Page<AgendaRecord>> pesquisarPorPeriodo(
-            @RequestParam("dt-ini") String dataInicio,
-            @RequestParam("dt-fin") String dataFinal);
+    Page<Agenda> pesquisarPorPeriodo(
+            @RequestParam("dt-ini") LocalDate dataInicio,
+            @RequestParam("dt-fin") LocalDate dataFinal,
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size);
 
     @GetMapping
     ResponseEntity<AgendaRecord> pesquisarPorID(Long id);

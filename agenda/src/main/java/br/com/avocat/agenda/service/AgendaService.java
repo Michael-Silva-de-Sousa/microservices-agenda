@@ -3,6 +3,7 @@ package br.com.avocat.agenda.service;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.web.dto.AgendaRecord;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -15,11 +16,11 @@ public interface AgendaService {
 
     Optional<AgendaRecord> pesquisarPorID(Long id);
 
-    Page<AgendaRecord> pesquisarTodosPorProcessoID(Long processoID);
+    Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable);
 
-    Page<AgendaRecord> pesquisarTodosPorContratoID(Long contratoID);
+    Page<Agenda> pesquisarTodosPorContratoID(Long contratoID);
 
-    Page<Page<AgendaRecord>> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal);
+    Page<Agenda> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal, Pageable pageable);
 
     void inativar(Long id);
 

@@ -34,21 +34,18 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public Page<AgendaRecord> pesquisarTodosPorProcessoID(Long processoID) {
-
-        Pageable pageable = PageRequest.of(0, 10);
-        Page<Agenda> agendas = agendaRepository.findAll(pageable);
-        return ;
+    public Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable) {
+        return agendaRepository.findAll(pageable);
     }
 
     @Override
-    public Page<AgendaRecord> pesquisarTodosPorContratoID(Long contratoID) {
+    public Page<Agenda> pesquisarTodosPorContratoID(Long contratoID) {
         return Optional.empty();
     }
 
     @Override
-    public Page<Page<AgendaRecord>> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
-        return Optional.empty();
+    public Page<Agenda> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal, Pageable pageable) {
+        return agendaRepository.findAll(pageable);
     }
 
     @Override
