@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-@Document("agendas")
+@Document(collection = "agendas")
 public class Agenda {
 
     @Id
     private String id;
+
     private  String usuario;
+    private String chavePrivada;
     private Long processoID;
     private Long contratoID;
     private String titulo;
@@ -23,5 +25,4 @@ public class Agenda {
     private LocalDateTime dataAtualizacao;
     private LocalDateTime dataFinal;
     private LocalDateTime dataLembrete;
-
 }
