@@ -1,0 +1,15 @@
+# Spring Boot configuration
+spring:
+  #profiles:
+  #active: development
+  application:
+    name: agenda
+  # MongoDB
+  data:
+    mongodb:
+      user: test
+      password: passwordvalue
+      uri: mongodb://host:27017/db
+# Server configuration
+server:
+  port: 8080 #set your port
