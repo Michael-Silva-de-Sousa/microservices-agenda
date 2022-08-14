@@ -53,7 +53,7 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public Page<Agenda> pesquisarTodosPorContratoID(Long contratoID) {
-        return Optional.empty();
+        return Page.empty();
     }
 
     @Override
