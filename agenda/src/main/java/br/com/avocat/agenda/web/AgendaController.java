@@ -13,25 +13,22 @@ public interface AgendaController {
     @PostMapping
     ResponseEntity<Agenda> salvar(@RequestBody @Valid Agenda agenda);
 
-    @GetMapping("/inativar")
-    ResponseEntity<Void> inativar(@PathVariable("/{id}") Long id);
+    @GetMapping("/pesquisar")
+    ResponseEntity<Page<Agenda>> buscarPorPeriodo(
+            @RequestParam(value = "dt-ini", required = true) LocalDate dataInicio,
+            @RequestParam(value = "dt-fin", required = true) LocalDate dataFinal,
+            @RequestParam(defaultValue = "0", required = false) Integer page,
+            @RequestParam(defaultValue = "10", required = false) Integer size);
+
+    @GetMapping("/id")
+    ResponseEntity<Agenda> buscarPorId(@PathVariable("agendaID") String id);
+
+    @GetMapping("/processos")
+    ResponseEntity<Page<Agenda>> todosPorProcessoId(@PathVariable("processoID") Long processoID);
+
+    @GetMapping("/contratos")
+    ResponseEntity<Page<Agenda>> todosPorContratoId(@PathVariable("contratoID") Long contratoID);
 
     @DeleteMapping("/excluir")
     ResponseEntity<Void> excluir(@PathVariable("/{id}") Long id);
-
-    @GetMapping("/pesquisar")
-    ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
-            @RequestParam("dt-ini") LocalDate dataInicio,
-            @RequestParam("dt-fin") LocalDate dataFinal,
-            @RequestParam(required = false) Integer page,
-            @RequestParam(required = false) Integer size);
-
-    @GetMapping("/id")
-    ResponseEntity<Agenda> pesquisarPorID(@PathVariable("agendaID") String id);
-
-    @GetMapping("/processos")
-    ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(@PathVariable("processoID") Long processoID);
-
-    @GetMapping("/contratos")
-    ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(@PathVariable("contratoID") Long contratoID);
 }

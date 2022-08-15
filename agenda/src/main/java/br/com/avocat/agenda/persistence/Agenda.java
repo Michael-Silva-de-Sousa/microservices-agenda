@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
@@ -37,10 +38,10 @@ public class Agenda {
     private String descricao;
 
     @CreatedDate
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
 
     @LastModifiedDate
-    private LocalDateTime dataAtualizacao;
+    private LocalDate dataAtualizacao;
 
     private LocalDateTime dataFinal;
 

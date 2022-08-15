@@ -13,9 +13,6 @@ public interface AgendaService {
     @Transactional
     Optional<Agenda> salvar(Agenda agenda);
 
-    @Transactional
-    Optional<Agenda> atualizar(Agenda agenda);
-
     Optional<Agenda> pesquisarPorID(String agendaID);
 
     Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable);

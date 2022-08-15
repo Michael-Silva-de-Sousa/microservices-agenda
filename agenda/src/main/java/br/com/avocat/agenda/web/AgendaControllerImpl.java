@@ -36,38 +36,30 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
-            LocalDate dataInicial,
-            LocalDate dataFinal,
-            @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "10")  Integer size) {
+    public ResponseEntity<Page<Agenda>> buscarPorPeriodo(
+            LocalDate dataInicial, LocalDate dataFinal, Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(agendaService.pesquisarPorPeriodo(dataInicial, dataFinal, pageable));
     }
 
     @Override
-    public ResponseEntity<Agenda> pesquisarPorID(String agendaID) {
+    public ResponseEntity<Agenda> buscarPorId(String agendaId) {
         try {
-            return agendaService.pesquisarPorID(agendaID)
+            return agendaService.pesquisarPorID(agendaId)
                     .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
         } catch (AgendaException e) {
-            throw new AgendaException("Erro ao pesquisar o agendamento de ID: " + agendaID, e);
+            throw new AgendaException("Erro ao pesquisar o agendamento de ID: " + agendaId, e);
         }
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> pesquisarTodosPorProcessoID(Long processoID) {
+    public ResponseEntity<Page<Agenda>> todosPorProcessoId(Long processoId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> pesquisarTodosPorContratoID(Long contratoID) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Void> inativar(Long id) {
+    public ResponseEntity<Page<Agenda>> todosPorContratoId(Long contratoId) {
         return null;
     }
 
