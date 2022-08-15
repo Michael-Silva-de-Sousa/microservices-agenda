@@ -22,17 +22,17 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public Optional<Agenda> pesquisarPorID(String agendaID) {
+    public Optional<Agenda> pesquisarPorId(String agendaID) {
         return agendaRepository.findById(agendaID);
     }
 
     @Override
-    public Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable) {
+    public Page<Agenda> pesquisarTodosPorProcessoId(Long processoId, Pageable pageable) {
         return agendaRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Agenda> pesquisarTodosPorContratoID(Long contratoID) {
+    public Page<Agenda> pesquisarTodosPorContratoId(Long contratoId) {
         return Page.empty();
     }
 
@@ -42,12 +42,8 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public void inativar(Long id) {
-
-    }
-
-    @Override
-    public void excluir(Long id) {
-
+    public void excluir(String id) {
+        var agenda = agendaRepository.findById(id);
+        agenda.ifPresent(value -> agendaRepository.delete(value));
     }
 }

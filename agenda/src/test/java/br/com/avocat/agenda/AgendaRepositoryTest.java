@@ -2,11 +2,14 @@ package br.com.avocat.agenda;
 
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.persistence.AgendaRepository;
+import br.com.avocat.agenda.service.AgendaServiceImpl;
+import org.apache.coyote.Response;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +20,9 @@ public class AgendaRepositoryTest {
 
     @Autowired
     private AgendaRepository agendaRepository;
+
+    @Autowired
+    private AgendaServiceImpl agendaService;
 
     @Test
     void insereAgenda_entao200(){
@@ -38,6 +44,15 @@ public class AgendaRepositoryTest {
         var dataFinal = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 30);
         //When
         var result = agendaRepository.pesquisaPorPeriodo(dataInicial, dataFinal, Pageable.ofSize(10));
+        //Then
+        Assertions.assertThat(result).isNotNull();
+    }
+
+    void buscarPorId() {
+        //Given
+        String id = "";
+        //When
+        var result = agendaService.pesquisarPorId(id);
         //Then
         Assertions.assertThat(result).isNotNull();
     }

@@ -13,15 +13,13 @@ public interface AgendaService {
     @Transactional
     Optional<Agenda> salvar(Agenda agenda);
 
-    Optional<Agenda> pesquisarPorID(String agendaID);
+    Optional<Agenda> pesquisarPorId(String agendaID);
 
-    Page<Agenda> pesquisarTodosPorProcessoID(Long processoID, Pageable pageable);
+    Page<Agenda> pesquisarTodosPorProcessoId(Long processoId, Pageable pageable);
 
-    Page<Agenda> pesquisarTodosPorContratoID(Long contratoID);
+    Page<Agenda> pesquisarTodosPorContratoId(Long contratoId);
 
     Page<Agenda> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal, Pageable pageable);
 
-    void inativar(Long id);
-
-    void excluir(Long id);
+    void excluir(String id);
 }

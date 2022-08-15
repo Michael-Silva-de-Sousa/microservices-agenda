@@ -14,21 +14,21 @@ public interface AgendaController {
     ResponseEntity<Agenda> salvar(@RequestBody @Valid Agenda agenda);
 
     @GetMapping("/pesquisar")
-    ResponseEntity<Page<Agenda>> buscarPorPeriodo(
+    ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
             @RequestParam(value = "dt-ini", required = true) LocalDate dataInicio,
             @RequestParam(value = "dt-fin", required = true) LocalDate dataFinal,
             @RequestParam(defaultValue = "0", required = false) Integer page,
             @RequestParam(defaultValue = "10", required = false) Integer size);
 
     @GetMapping("/id")
-    ResponseEntity<Agenda> buscarPorId(@PathVariable("agendaID") String id);
+    ResponseEntity<Agenda> pesquisarPorId(@PathVariable("agendaID") String id);
 
     @GetMapping("/processos")
-    ResponseEntity<Page<Agenda>> todosPorProcessoId(@PathVariable("processoID") Long processoID);
+    ResponseEntity<Page<Agenda>> pesquisarPorProcessoId(@PathVariable("processoID") Long processoID);
 
     @GetMapping("/contratos")
-    ResponseEntity<Page<Agenda>> todosPorContratoId(@PathVariable("contratoID") Long contratoID);
+    ResponseEntity<Page<Agenda>> pesquisarPorContratoId(@PathVariable("contratoID") Long contratoID);
 
     @DeleteMapping("/excluir")
-    ResponseEntity<Void> excluir(@PathVariable("/{id}") Long id);
+    ResponseEntity<Void> excluir(@PathVariable("/{id}") String id);
 }

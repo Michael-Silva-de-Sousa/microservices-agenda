@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -36,7 +35,7 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> buscarPorPeriodo(
+    public ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
             LocalDate dataInicial, LocalDate dataFinal, Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size);
@@ -44,9 +43,9 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<Agenda> buscarPorId(String agendaId) {
+    public ResponseEntity<Agenda> pesquisarPorId(String agendaId) {
         try {
-            return agendaService.pesquisarPorID(agendaId)
+            return agendaService.pesquisarPorId(agendaId)
                     .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
         } catch (AgendaException e) {
             throw new AgendaException("Erro ao pesquisar o agendamento de ID: " + agendaId, e);
@@ -54,17 +53,18 @@ public class AgendaControllerImpl implements AgendaController {
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> todosPorProcessoId(Long processoId) {
+    public ResponseEntity<Page<Agenda>> pesquisarPorProcessoId(Long processoId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Page<Agenda>> todosPorContratoId(Long contratoId) {
+    public ResponseEntity<Page<Agenda>> pesquisarPorContratoId(Long contratoId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Void> excluir(Long id) {
-        return null;
+    public ResponseEntity<Void> excluir(String id) {
+        agendaService.excluir(id);
+        return ResponseEntity.ok().build();
     }
 }
