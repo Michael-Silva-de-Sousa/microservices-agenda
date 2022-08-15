@@ -10,11 +10,8 @@ import java.time.LocalDate;
 
 public interface AgendaController {
 
-    @PostMapping("/cadastrar")
-    ResponseEntity<Agenda> cadastrar(@RequestBody @Valid Agenda agenda);
-
-    @PutMapping("/atualizar")
-    ResponseEntity<Agenda> atualizar(@RequestBody @Valid Agenda agenda);
+    @PostMapping
+    ResponseEntity<Agenda> salvar(@RequestBody @Valid Agenda agenda);
 
     @GetMapping("/inativar")
     ResponseEntity<Void> inativar(@PathVariable("/{id}") Long id);

@@ -22,7 +22,7 @@ public class AgendaControllerImpl implements AgendaController {
     private AgendaServiceImpl agendaService;
 
     @Override
-    public ResponseEntity<Agenda> cadastrar(Agenda agenda) {
+    public ResponseEntity<Agenda> salvar(Agenda agenda) {
 
         try {
             var result = agendaService.salvar(agenda);
@@ -32,20 +32,6 @@ public class AgendaControllerImpl implements AgendaController {
 
         } catch (AgendaException e) {
             throw new AgendaException("Erro ao salvar o agendamento:", e);
-        }
-    }
-
-    @Override
-    public ResponseEntity<Agenda> atualizar(Agenda agenda) {
-
-        try {
-            var result = agendaService.atualizar(agenda);
-            return result
-                    .map(value -> ResponseEntity.ok().body(value))
-                    .orElseGet(() -> ResponseEntity.badRequest().build());
-
-        } catch (AgendaException e) {
-            throw new AgendaException("Erro ao atualizar o agendamento:", e);
         }
     }
 

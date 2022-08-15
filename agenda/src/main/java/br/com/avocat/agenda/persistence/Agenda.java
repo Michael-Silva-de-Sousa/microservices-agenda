@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -34,8 +36,10 @@ public class Agenda {
     @NotBlank(message = "Descrição é obrigatória")
     private String descricao;
 
+    @CreatedDate
     private LocalDateTime dataCadastro;
 
+    @LastModifiedDate
     private LocalDateTime dataAtualizacao;
 
     private LocalDateTime dataFinal;
