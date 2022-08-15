@@ -7,7 +7,7 @@ spring:
   # MongoDB
   data:
     mongodb:
-      user: agenda
+      user: avocat
       password: e296cd9f
       uri: mongodb://localhost:27017/agenda
 # Server configuration
