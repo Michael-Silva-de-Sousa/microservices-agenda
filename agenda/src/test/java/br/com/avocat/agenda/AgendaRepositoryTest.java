@@ -48,9 +48,10 @@ public class AgendaRepositoryTest {
         Assertions.assertThat(result).isNotNull();
     }
 
+    @Test
     void buscarPorId() {
         //Given
-        String id = "";
+        String id = "62fa7a1b67a0a30f9ce2353a";
         //When
         var result = agendaService.pesquisarPorId(id);
         //Then
