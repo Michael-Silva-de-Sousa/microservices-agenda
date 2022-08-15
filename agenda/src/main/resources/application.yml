@@ -8,8 +8,8 @@ spring:
   data:
     mongodb:
       user: agenda
-      password: agenda
-      uri: mongodb://host:27017/agenda
+      password: e296cd9f
+      uri: mongodb://localhost:27017/agenda
 # Server configuration
 server:
   port: 8080 #set your port
