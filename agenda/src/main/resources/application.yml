@@ -7,9 +7,8 @@ spring:
   # MongoDB
   data:
     mongodb:
-      user: avocat
-      password: e296cd9f
-      uri: mongodb://localhost:27017/agenda
+      uri: mongodb://avocat:e296cd9f@localhost:27017
+      database: agenda
 # Server configuration
 server:
   port: 8080 #set your port
