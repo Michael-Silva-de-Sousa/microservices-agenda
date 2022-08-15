@@ -5,15 +5,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 public interface AgendaController {
 
     @PostMapping("/cadastrar")
-    ResponseEntity<Agenda> cadastrar(@RequestBody Agenda agenda);
+    ResponseEntity<Agenda> cadastrar(@RequestBody @Valid Agenda agenda);
 
     @PutMapping("/atualizar")
-    ResponseEntity<Agenda> atualizar(@RequestBody Agenda agenda);
+    ResponseEntity<Agenda> atualizar(@RequestBody @Valid Agenda agenda);
 
     @GetMapping("/inativar")
     ResponseEntity<Void> inativar(@PathVariable("/{id}") Long id);
