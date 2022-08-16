@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @SpringBootTest
-public class AgendaRepositoryTest {
+class AgendaRepositoryTest {
 
     @Autowired
     private AgendaRepository agendaRepository;

@@ -22,8 +22,8 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public Optional<Agenda> pesquisarPorId(String agendaID) {
-        return agendaRepository.findById(agendaID);
+    public Optional<Agenda> pesquisarPorId(String agendaId) {
+        return agendaRepository.findById(agendaId);
     }
 
     @Override
