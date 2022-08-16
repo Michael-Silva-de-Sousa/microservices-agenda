@@ -26,9 +26,9 @@ public class Agenda {
 
     private String chavePrivada;
 
-    private String processoID;
+    private String processoId;
 
-    private String contratoID;
+    private String contratoId;
 
     @NotBlank(message = "Título é obrigatório")
     @Length(max = 100, message = "O título deverá ter no máximo {max} caracteres.")
