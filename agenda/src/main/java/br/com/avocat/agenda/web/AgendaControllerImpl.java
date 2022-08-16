@@ -36,7 +36,7 @@ public class AgendaControllerImpl implements AgendaController {
 
     @Override
     public ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
-            LocalDate dataInicial, LocalDate dataFinal, Integer page, Integer size) {
+            String dataInicial, String dataFinal, Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size);
         return ResponseEntity.ok(agendaService.pesquisarPorPeriodo(dataInicial, dataFinal, pageable));

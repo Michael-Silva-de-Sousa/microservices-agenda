@@ -37,8 +37,12 @@ public class AgendaServiceImpl implements AgendaService {
     }
 
     @Override
-    public Page<Agenda> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal, Pageable pageable) {
-        return agendaRepository.findAll(pageable);
+    public Page<Agenda> pesquisarPorPeriodo(String dataInicial, String dataFinal, Pageable pageable) {
+
+        LocalDate dataInicialLocalDate = LocalDate.parse(dataInicial);
+        LocalDate dataFinalLocalDate = LocalDate.parse(dataFinal);
+
+        return agendaRepository.pesquisaPorPeriodo(dataInicialLocalDate, dataFinalLocalDate, pageable);
     }
 
     @Override

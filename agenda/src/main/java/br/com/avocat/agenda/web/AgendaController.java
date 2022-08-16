@@ -15,10 +15,10 @@ public interface AgendaController {
 
     @GetMapping("/pesquisar")
     ResponseEntity<Page<Agenda>> pesquisarPorPeriodo(
-            @RequestParam(value = "dt-ini", required = true) LocalDate dataInicio,
-            @RequestParam(value = "dt-fin", required = true) LocalDate dataFinal,
-            @RequestParam(defaultValue = "0", required = false) Integer page,
-            @RequestParam(defaultValue = "10", required = false) Integer size);
+            @RequestParam(value = "dt-ini", required = true) String dataInicio,
+            @RequestParam(value = "dt-fin", required = true) String dataFinal,
+            @RequestParam(value="page", defaultValue = "0", required = false) Integer page,
+            @RequestParam(value="size", defaultValue = "10", required = false) Integer size);
 
     @GetMapping("/{agendaId}")
     ResponseEntity<Agenda> pesquisarPorId(@PathVariable("agendaId") String id);

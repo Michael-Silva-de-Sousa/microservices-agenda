@@ -19,7 +19,7 @@ public interface AgendaService {
 
     Page<Agenda> pesquisarTodosPorContratoId(Long contratoId);
 
-    Page<Agenda> pesquisarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal, Pageable pageable);
+    Page<Agenda> pesquisarPorPeriodo(String dataInicial, String dataFinal, Pageable pageable);
 
     void excluir(String id);
 }
