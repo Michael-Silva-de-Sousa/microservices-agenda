@@ -2,18 +2,14 @@ package br.com.avocat.agenda;
 
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.persistence.AgendaRepository;
-import br.com.avocat.agenda.service.AgendaServiceImpl;
-import org.apache.coyote.Response;
+import br.com.avocat.agenda.service.AgendaService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @SpringBootTest
 class AgendaRepositoryTest {
@@ -22,7 +18,7 @@ class AgendaRepositoryTest {
     private AgendaRepository agendaRepository;
 
     @Autowired
-    private AgendaServiceImpl agendaService;
+    private AgendaService agendaService;
 
     @Test
     void insereAgenda_entao200(){

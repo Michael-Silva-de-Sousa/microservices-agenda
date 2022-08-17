@@ -2,7 +2,7 @@ package br.com.avocat.agenda.web;
 
 import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.service.AgendaServiceImpl;
+import br.com.avocat.agenda.service.AgendaService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @RestController
 public class AgendaController {
 
-    private AgendaServiceImpl agendaService;
+    private AgendaService agendaService;
 
     @PostMapping
     public ResponseEntity<Agenda> salvar(@RequestBody @Valid Agenda agenda) {
@@ -56,11 +56,13 @@ public class AgendaController {
 
     @GetMapping("/processo/{processoId}")
     public ResponseEntity<Page<Agenda>> pesquisarPorProcessoId(@PathVariable("processoId") Long processoId) {
+        //TODO falta implementação
         return null;
     }
 
     @GetMapping("/contrato/{contratoId}")
     public ResponseEntity<Page<Agenda>> pesquisarPorContratoId(@PathVariable("contratoId") Long contratoId) {
+        //TODO falta implementação
         return null;
     }
 

@@ -22,7 +22,7 @@ public class Agenda {
     @Id
     private String id;
 
-    private  String usuario;
+    private String usuario;
 
     private String chavePrivada;
 

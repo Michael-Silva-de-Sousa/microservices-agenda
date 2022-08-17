@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class AgendaServiceImpl {
+public class AgendaService {
 
     private AgendaRepository agendaRepository;
 
@@ -27,10 +27,12 @@ public class AgendaServiceImpl {
     }
 
     public Page<Agenda> pesquisarTodosPorProcessoId(Long processoId, Pageable pageable) {
-        return agendaRepository.findAll(pageable);
+        //TODO falta implementação
+        return Page.empty();
     }
 
     public Page<Agenda> pesquisarTodosPorContratoId(Long contratoId) {
+        //TODO falta implementação
         return Page.empty();
     }
 
