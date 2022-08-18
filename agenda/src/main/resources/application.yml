@@ -9,6 +9,15 @@ spring:
     mongodb:
       uri: mongodb://avocat:e296cd9f@localhost:27017
       database: agenda
+# Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      fetch-registry: true
+      register-with-eureka: true
+    instance:
+      preferIpAddress: true
 # Server configuration
 server:
   port: 8080 #set your port
