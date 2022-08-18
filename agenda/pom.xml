@@ -13,7 +13,6 @@
 	<artifactId>agenda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>agenda</name>
-	<description>Serviço de agenda</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
