@@ -1,0 +1,10 @@
+# Spring Boot configuration
+spring:
+#profiles:
+#active: development
+application:
+    name: notificacao
+# Server configuration
+server:
+    port: 8081 #set your port
+
