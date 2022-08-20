@@ -1,5 +1,6 @@
 package br.com.avocat.agenda.persistence;
 
+import br.com.avocat.agenda.persistence.enums.LembreteStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,4 +47,6 @@ public class Agenda {
     private LocalDateTime dataFinal;
 
     private LocalDateTime dataLembrete;
+
+    private LembreteStatus lembreteStatus;
 }

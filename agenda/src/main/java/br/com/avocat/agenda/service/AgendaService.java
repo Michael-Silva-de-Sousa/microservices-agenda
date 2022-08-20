@@ -3,6 +3,7 @@ package br.com.avocat.agenda.service;
 import br.com.avocat.agenda.dto.AgendaRecord;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.persistence.AgendaRepository;
+import br.com.avocat.agenda.persistence.enums.LembreteStatus;
 import br.com.avocat.amqp.RabbitMQMessageProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,9 @@ public class AgendaService {
     public Optional<Agenda> salvar(Agenda agenda) {
 
         if(!ObjectUtils.isEmpty(agenda.getDataLembrete())) {
+            agenda.setLembreteStatus(LembreteStatus.UNPUBLISHED);
             enviarNotificacaoMensageria(agenda);
+            agenda.setLembreteStatus(LembreteStatus.PUBLISHED);
         }
         return Optional.of(agendaRepository.save(agenda));
     }
@@ -59,7 +62,7 @@ public class AgendaService {
     }
 
     private void enviarNotificacaoMensageria(Agenda agenda) {
-
+        //TODO construir um retorno para notificar que a publicação foi realizada com sucesso.
         var agendaRecord = new AgendaRecord(
                 agenda.getChavePrivada(),
                 agenda.getTitulo(),
