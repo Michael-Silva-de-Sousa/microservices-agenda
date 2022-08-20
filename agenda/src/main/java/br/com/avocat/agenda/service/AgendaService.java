@@ -1,12 +1,15 @@
 package br.com.avocat.agenda.service;
 
+import br.com.avocat.agenda.dto.AgendaRecord;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.persistence.AgendaRepository;
+import br.com.avocat.amqp.RabbitMQMessageProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -15,10 +18,15 @@ import java.util.Optional;
 @Service
 public class AgendaService {
 
-    private AgendaRepository agendaRepository;
+    private final AgendaRepository agendaRepository;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     @Transactional
     public Optional<Agenda> salvar(Agenda agenda) {
+
+        if(!ObjectUtils.isEmpty(agenda.getDataLembrete())) {
+            enviarNotificacaoMensageria(agenda);
+        }
         return Optional.of(agendaRepository.save(agenda));
     }
 
@@ -47,6 +55,24 @@ public class AgendaService {
     @Transactional
     public void excluir(String agendaId) {
         var agenda = agendaRepository.findById(agendaId);
-        agenda.ifPresent(value -> agendaRepository.delete(value));
+        agenda.ifPresent(agendaRepository::delete);
+    }
+
+    private void enviarNotificacaoMensageria(Agenda agenda) {
+
+        var agendaRecord = new AgendaRecord(
+                agenda.getChavePrivada(),
+                agenda.getTitulo(),
+                agenda.getDescricao(),
+                agenda.getDataCadastro(),
+                agenda.getDataLembrete(),
+                agenda.getDataFinal(),
+                agenda.getDataAtualizacao()
+        );
+
+        rabbitMQMessageProducer.publish(
+                agendaRecord,
+                "internal.exchange",
+                "internal.notification.routing-key");
     }
 }
