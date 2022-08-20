@@ -1,39 +1,20 @@
 package br.com.avocat.amqp;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@Slf4j
 @AllArgsConstructor
 public class RabbitMQMessageProducer {
 
-    private final ConnectionFactory connectionFactory;
+    private final AmqpTemplate amqpTemplate;
 
-    @Bean
-    public AmqpTemplate amqpTemplate() {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(jacksonConverter());
-        return rabbitTemplate;
-    }
-
-    @Bean
-    public SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory() {
-        SimpleRabbitListenerContainerFactory factory =
-                new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        factory.setMessageConverter(jacksonConverter());
-        return factory;
-    }
-
-    @Bean
-    public MessageConverter jacksonConverter() {
-        return new Jackson2JsonMessageConverter();
+    public void publish(Object payload, String exchange, String routingKey) {
+        log.info("Publishing to {} using routingKey {}. Payload: {}", exchange, routingKey, payload);
+        amqpTemplate.convertAndSend(exchange, routingKey, payload);
+        log.info("Published to {} using routingKey {}. Payload: {}", exchange, routingKey, payload);
     }
 }
