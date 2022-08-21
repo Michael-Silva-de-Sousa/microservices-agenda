@@ -9,10 +9,13 @@ spring:
     mongodb:
       uri: mongodb://avocat:e296cd9f@localhost:27017
       database: agenda
+  # RabbitMQ
   rabbitmq:
     addresses: localhost:5672
-# Propriedades
-
+    username: guest
+    password: guest
+  queue:
+    name: lembretes
 # Eureka
 eureka:
   client:
