@@ -66,7 +66,7 @@ class AgendaControllerTest {
                 .body("id", notNullValue())
                 .body("dataCadastro", notNullValue())
                 //.body("dataLembrete", Matchers.equalTo("2009-12-02T11:25:25"))
-                .body("lembreteStatus", Matchers.equalTo("PUBLISH"));
+                .body("lembreteStatus", Matchers.equalTo("PUBLISHED"));
     }
 
     @Test
