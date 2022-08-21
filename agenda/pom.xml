@@ -21,6 +21,10 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>br.com.avocat</groupId>
 			<artifactId>amqp</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
