@@ -26,9 +26,9 @@ public class AgendaService {
     public Optional<Agenda> salvar(Agenda agenda) {
 
         if(!ObjectUtils.isEmpty(agenda.getDataLembrete())) {
-            agenda.setLembreteStatus(LembreteStatus.UNPUBLISHED);
+            agenda.setLembreteStatus(LembreteStatus.UNPUBLISHED.name());
             enviarNotificacaoMensageria(agenda);
-            agenda.setLembreteStatus(LembreteStatus.PUBLISHED);
+            agenda.setLembreteStatus(LembreteStatus.PUBLISHED.name());
         }
         return Optional.of(agendaRepository.save(agenda));
     }
@@ -75,7 +75,7 @@ public class AgendaService {
 
         rabbitMQMessageProducer.publish(
                 agendaRecord,
-                "internal.exchange",
-                "internal.notification.routing-key");
+                "amq.direct.notificacao",
+                "lembrete");
     }
 }

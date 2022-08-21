@@ -1,9 +1,9 @@
 package br.com.avocat.agenda.persistence;
 
-import br.com.avocat.agenda.persistence.enums.LembreteStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "agendas")
 public class Agenda {
 
@@ -48,5 +49,5 @@ public class Agenda {
 
     private LocalDateTime dataLembrete;
 
-    private LembreteStatus lembreteStatus;
+    private String lembreteStatus;
 }
