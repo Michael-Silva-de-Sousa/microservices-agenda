@@ -1,5 +1,6 @@
 package br.com.avocat.agenda.web;
 
+import br.com.avocat.agenda.dto.AgendaRecord;
 import br.com.avocat.agenda.exception.AgendaException;
 import br.com.avocat.agenda.persistence.Agenda;
 import br.com.avocat.agenda.service.AgendaService;
@@ -20,7 +21,7 @@ public class AgendaController {
     private AgendaService agendaService;
 
     @PostMapping
-    public ResponseEntity<Agenda> salvar(@RequestBody @Valid Agenda agenda) {
+    public ResponseEntity<Agenda> salvar(@RequestBody @Valid AgendaRecord agenda) {
 
         try {
             var result = agendaService.salvar(agenda);

@@ -4,9 +4,11 @@ import static io.restassured.RestAssured.*;
 
 import static org.hamcrest.Matchers.*;
 
+import br.com.avocat.agenda.dto.AgendaRecord;
 import br.com.avocat.agenda.persistence.Agenda;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,6 +45,28 @@ class AgendaControllerTest {
             .statusCode(200)
             .body("id", notNullValue())
             .body("dataCadastro", notNullValue());
+    }
+
+    @Test
+    void salvarAgendaComLembrete_entao200() throws JsonProcessingException {
+
+        var agenda = new AgendaRecord(null, "Teste com RestAssured", "Testa o salvar com lembrete.",
+                                        null, "2009-12-02T11:25:25", null, null);
+
+        String agendaJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(agenda);
+
+        given()
+                .contentType("application/json")
+                .body(agendaJson)
+                .when()
+                .post("http://localhost:" + port + "/v1/api/agenda")
+                .then()
+                .log().all()
+                .statusCode(200)
+                .body("id", notNullValue())
+                .body("dataCadastro", notNullValue())
+                //.body("dataLembrete", Matchers.equalTo("2009-12-02T11:25:25"))
+                .body("lembreteStatus", Matchers.equalTo("PUBLISH"));
     }
 
     @Test
