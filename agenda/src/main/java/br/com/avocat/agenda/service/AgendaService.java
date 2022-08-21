@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -23,11 +24,18 @@ public class AgendaService {
     private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     @Transactional
-    public Optional<Agenda> salvar(Agenda agenda) {
+    public Optional<Agenda> salvar(AgendaRecord agendaRecord) {
+
+        var agenda = Agenda.builder()
+                        .titulo(agendaRecord.titulo())
+                        .descricao(agendaRecord.descricao())
+                        .dataLembrete(LocalDateTime.parse(agendaRecord.dataLembrete()))
+                        //.dataFinal(LocalDateTime.parse(agendaRecord.dataFinal()))
+                        .build();
 
         if(!ObjectUtils.isEmpty(agenda.getDataLembrete())) {
             agenda.setLembreteStatus(LembreteStatus.UNPUBLISHED.name());
-            enviarNotificacaoMensageria(agenda);
+            enviarNotificacaoMensageria(agendaRecord);
             agenda.setLembreteStatus(LembreteStatus.PUBLISHED.name());
         }
         return Optional.of(agendaRepository.save(agenda));
@@ -61,21 +69,11 @@ public class AgendaService {
         agenda.ifPresent(agendaRepository::delete);
     }
 
-    private void enviarNotificacaoMensageria(Agenda agenda) {
+    private void enviarNotificacaoMensageria(AgendaRecord agendaRecord) {
         //TODO construir um retorno para notificar que a publicação foi realizada com sucesso.
-        var agendaRecord = new AgendaRecord(
-                agenda.getChavePrivada(),
-                agenda.getTitulo(),
-                agenda.getDescricao(),
-                agenda.getDataCadastro(),
-                agenda.getDataLembrete(),
-                agenda.getDataFinal(),
-                agenda.getDataAtualizacao()
-        );
-
         rabbitMQMessageProducer.publish(
                 agendaRecord,
-                "amq.direct.notificacao",
+                "exchanges.direct.notificacao",
                 "lembrete");
     }
 }
