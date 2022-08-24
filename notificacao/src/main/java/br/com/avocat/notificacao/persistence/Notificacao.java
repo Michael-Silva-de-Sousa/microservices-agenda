@@ -8,7 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Builder
 @NoArgsConstructor
@@ -17,7 +16,7 @@ import java.util.UUID;
 public class Notificacao {
 
     @Id
-    private UUID id;
+    private String id;
     private LocalDate dataEnvio;
     private StatusEnvio statusEnvio;
     private String conteudo;
