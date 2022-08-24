@@ -1,6 +1,6 @@
 package br.com.avocat.notificacao.persistence;
 
-import br.com.avocat.notificacao.enums.StatusEnvio;
+import br.com.avocat.notificacao.persistence.enums.StatusEnvio;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -18,6 +18,6 @@ public class Notificacao {
     @Id
     private String id;
     private LocalDate dataEnvio;
-    private StatusEnvio statusEnvio;
+    private String statusEnvio;
     private String conteudo;
 }

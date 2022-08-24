@@ -1,4 +1,4 @@
-package br.com.avocat.notificacao.enums;
+package br.com.avocat.notificacao.persistence.enums;
 
 import lombok.Getter;
 
