@@ -13,6 +13,14 @@ eureka:
             register-with-eureka: true
         instance:
             preferIpAddress: true
+# RabbitMQ
+rabbitmq:
+    exchanges:
+        internal: internal.exchange
+    queues:
+        notificacao: notificacao.queue
+    routing-keys:
+        internal-notification: internal.notificacao.routing-key
 # Server configuration
 server:
     port: 8081 #set your port
