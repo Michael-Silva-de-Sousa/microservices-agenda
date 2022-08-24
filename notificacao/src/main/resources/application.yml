@@ -4,6 +4,16 @@ spring:
 #active: development
 application:
     name: notificacao
+    # MongoDB
+    data:
+        mongodb:
+            uri: mongodb://avocat:e296cd9f@localhost:27017
+            database: notificacao
+    # RabbitMQ
+    rabbitmq:
+        addresses: localhost:5672
+        username: guest
+        password: guest
 # Eureka
 eureka:
     client:
