@@ -8,8 +8,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,11 +18,14 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "agendas")
+@Entity
+@Table(name = "agendas")
 public class Agenda {
 
     @Id
-    private String id;
+    @SequenceGenerator(name = "sq_agenda", sequenceName = "sq_agenda", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_agenda"    )
+    private Long id;
 
     private String usuario;
 
