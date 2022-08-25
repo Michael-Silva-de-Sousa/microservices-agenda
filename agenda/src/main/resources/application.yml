@@ -4,11 +4,18 @@ spring:
   #active: development
   application:
     name: agenda
-  # MongoDB
-  data:
-    mongodb:
-      uri: mongodb://avocat:e296cd9f@localhost:27017
-      database: agenda
+# Postgres
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/agenda
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
   # RabbitMQ
   rabbitmq:
     addresses: localhost:5672
