@@ -46,7 +46,7 @@ public class AgendaController {
     }
 
     @GetMapping("/{agendaId}")
-    public ResponseEntity<Agenda> pesquisarPorId(@PathVariable("agendaId") String agendaId) {
+    public ResponseEntity<Agenda> pesquisarPorId(@PathVariable("agendaId") Long agendaId) {
         try {
             return agendaService.pesquisarPorId(agendaId)
                     .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -68,7 +68,7 @@ public class AgendaController {
     }
 
     @DeleteMapping("/excluir/{agendaId}")
-    public ResponseEntity<Void> excluir(@PathVariable("agendaId") String id) {
+    public ResponseEntity<Void> excluir(@PathVariable("agendaId") Long id) {
         agendaService.excluir(id);
         return ResponseEntity.ok().build();
     }
