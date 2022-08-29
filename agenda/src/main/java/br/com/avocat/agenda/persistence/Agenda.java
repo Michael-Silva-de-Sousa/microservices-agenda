@@ -1,12 +1,10 @@
 package br.com.avocat.agenda.persistence;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
@@ -14,17 +12,16 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Builder
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Builder
+@Getter
+@Setter
 @Table(name = "agendas")
 public class Agenda {
 
     @Id
     @SequenceGenerator(name = "sq_agenda", sequenceName = "sq_agenda", initialValue = 1, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_agenda"    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_agenda")
     private Long id;
 
     private String usuario;
@@ -54,3 +51,4 @@ public class Agenda {
 
     private String lembreteStatus;
 }
+
