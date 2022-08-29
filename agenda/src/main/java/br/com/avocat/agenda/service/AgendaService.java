@@ -41,7 +41,7 @@ public class AgendaService {
         return Optional.of(agendaRepository.save(agenda));
     }
 
-    public Optional<Agenda> pesquisarPorId(String agendaId) {
+    public Optional<Agenda> pesquisarPorId(Long agendaId) {
         return agendaRepository.findById(agendaId);
     }
 
@@ -60,11 +60,11 @@ public class AgendaService {
         LocalDate dataInicialLocalDate = LocalDate.parse(dataInicial);
         LocalDate dataFinalLocalDate = LocalDate.parse(dataFinal);
 
-        return agendaRepository.pesquisaPorPeriodo(dataInicialLocalDate, dataFinalLocalDate, pageable);
+        return agendaRepository.findAll(pageable);
     }
 
     @Transactional
-    public void excluir(String agendaId) {
+    public void excluir(Long agendaId) {
         var agenda = agendaRepository.findById(agendaId);
         agenda.ifPresent(agendaRepository::delete);
     }
