@@ -1,7 +1,7 @@
 package br.com.avocat.agenda;
 
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.persistence.AgendaRepository;
+import br.com.avocat.agenda.persistence.repository.AgendaRepository;
 import br.com.avocat.agenda.service.AgendaService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

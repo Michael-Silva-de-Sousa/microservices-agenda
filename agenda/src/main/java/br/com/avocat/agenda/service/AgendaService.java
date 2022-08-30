@@ -2,7 +2,7 @@ package br.com.avocat.agenda.service;
 
 import br.com.avocat.agenda.dto.AgendaRecord;
 import br.com.avocat.agenda.persistence.Agenda;
-import br.com.avocat.agenda.persistence.AgendaRepository;
+import br.com.avocat.agenda.persistence.repository.AgendaRepository;
 import br.com.avocat.agenda.persistence.enums.LembreteStatus;
 import br.com.avocat.amqp.RabbitMQMessageProducer;
 import lombok.AllArgsConstructor;
